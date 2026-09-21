@@ -1,18 +1,28 @@
-# GitHub Challenge
+# GitHub Skills Challenge
 
-<img src="https://octodex.github.com/images/Professortocat_v2.png" align="right" height="200px" />
+This repository contains a small Python application and a GitHub Actions CI setup for running tests and coverage checks.
 
-Hey there!
+## Project overview
 
-Your challenge is ready.
-Follow the instructions provided for this challenge and complete the required tasks in this repository.
+- Python application code lives under the `src` directory.
+- Tests live under the `tests` directory.
+- GitHub Actions workflows live under `.github/workflows`.
 
-Make sure your work is committed and pushed to your repository before submission.
+## Local verification
 
-Good luck!
+Create and activate a virtual environment, then run:
 
+```bash
+source .venv/bin/activate
+PYTHONPATH=. pytest -vv -ra --cov=src --cov-report=term-missing
+```
 
----
+## CI workflows
 
-&copy; 2025 GitHub &bull; [Code of Conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct/code_of_conduct.md) &bull; [MIT License](https://gh.io/mit)
+- `.github/workflows/python-package.yml` runs the Python test suite on pull requests to `main`.
+- `.github/workflows/python-coverage.yml` runs coverage analysis and enforces a minimum coverage threshold.
+
+## Notes
+
+This repository is set up for GitHub Actions-based validation and continuous integration checks.
 
