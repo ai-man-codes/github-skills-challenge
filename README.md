@@ -1,28 +1,16 @@
-# GitHub Skills Challenge
+# Test with Actions
 
-This repository contains a small Python application and a GitHub Actions CI setup for running tests and coverage checks.
+<img src="https://octodex.github.com/images/Professortocat_v2.png" align="right" height="200px" />
 
-## Project overview
+Hey ai-man-codes!
 
-- Python application code lives under the `src` directory.
-- Tests live under the `tests` directory.
-- GitHub Actions workflows live under `.github/workflows`.
+Mona here. I'm done preparing your exercise. Hope you enjoy! 💚
 
-## Local verification
+Remember, it's self-paced so feel free to take a break! ☕️
 
-Create and activate a virtual environment, then run:
+[![](https://img.shields.io/badge/Go%20to%20Exercise-%E2%86%92-1f883d?style=for-the-badge&logo=github&labelColor=197935)](https://github.com/ai-man-codes/github-skills-challenge/issues/5)
 
-```bash
-source .venv/bin/activate
-PYTHONPATH=. pytest -vv -ra --cov=src --cov-report=term-missing
-```
+---
 
-## CI workflows
-
-- `.github/workflows/python-package.yml` runs the Python test suite on pull requests to `main`.
-- `.github/workflows/python-coverage.yml` runs coverage analysis and enforces a minimum coverage threshold.
-
-## Notes
-
-This repository is set up for GitHub Actions-based validation and continuous integration checks.
+&copy; 2025 GitHub &bull; [Code of Conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct/code_of_conduct.md) &bull; [MIT License](https://gh.io/mit)
 
