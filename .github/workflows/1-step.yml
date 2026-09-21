@@ -83,7 +83,24 @@ jobs:
 
       - name: Disable current workflow and enable next one
         run: |
-          gh workflow disable "${{github.workflow}}"
-          gh workflow enable "Step 2"
+          CURRENT_NAME="${{ github.workflow }}"
+          NEXT_NAME="Step 2"
+
+          gh workflow list --all --limit 200 --json name,id > /tmp/workflows.json
+
+          CURRENT_ID=$(python3 -c 'import json,sys; data=json.load(open("/tmp/workflows.json")); print(next((item["id"] for item in data if item["name"] == sys.argv[1]), ""))' "$CURRENT_NAME")
+          NEXT_ID=$(python3 -c 'import json,sys; data=json.load(open("/tmp/workflows.json")); print(next((item["id"] for item in data if item["name"] == sys.argv[1]), ""))' "$NEXT_NAME")
+
+          if [ -n "$CURRENT_ID" ]; then
+            gh api "/repos/${{ github.repository }}/actions/workflows/$CURRENT_ID/disable" -X PUT >/dev/null || true
+          else
+            echo "Current workflow not found: $CURRENT_NAME"
+          fi
+
+          if [ -n "$NEXT_ID" ]; then
+            gh api "/repos/${{ github.repository }}/actions/workflows/$NEXT_ID/enable" -X PUT >/dev/null || true
+          else
+            echo "Next workflow not found: $NEXT_NAME"
+          fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
